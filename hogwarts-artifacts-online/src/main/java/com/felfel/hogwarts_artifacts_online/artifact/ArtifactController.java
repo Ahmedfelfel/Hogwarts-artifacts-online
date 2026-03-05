@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("${api.endpoint.base-url}")
 public class ArtifactController {
 
 private final ArtifactService artifactService;
@@ -45,6 +45,7 @@ private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
         return new Result(true, HttpStatus.OK.value(), "find one success",artifactDto );
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @PostMapping("/artifacts")
     @ResponseStatus(HttpStatus.CREATED)
     public Result addArtifact(@Valid @RequestBody ArtifactDto artifactDto)

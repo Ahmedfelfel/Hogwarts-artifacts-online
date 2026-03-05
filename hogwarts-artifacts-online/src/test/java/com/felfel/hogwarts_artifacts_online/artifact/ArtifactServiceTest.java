@@ -1,6 +1,7 @@
 package com.felfel.hogwarts_artifacts_online.artifact;
 
 import com.felfel.hogwarts_artifacts_online.artifact.utils.IdWorker;
+import com.felfel.hogwarts_artifacts_online.system.exception.OpjectNotFoundException;
 import com.felfel.hogwarts_artifacts_online.wizard.Wizard;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +31,7 @@ class ArtifactServiceTest {
 
     @InjectMocks
     private ArtifactService artifactService;
+
 
     List<Artifact> artifactList = new ArrayList<>();
 
@@ -97,7 +99,7 @@ class ArtifactServiceTest {
         //when
         Throwable thrown = catchThrowable(() -> artifactService.findById("16135131"));
         //assert
-        assertThat(thrown).isInstanceOf(ArtifactNotFoundException.class).hasMessage("Could not find artifact with ID 16135131 :(");
+        assertThat(thrown).isInstanceOf(OpjectNotFoundException.class).hasMessage("Could not find artifact with ID 16135131 :(");
     }
     @Test
     void testFindAllSuccess()
@@ -119,7 +121,7 @@ class ArtifactServiceTest {
         //when
         Throwable thrown = catchThrowable(() -> artifactService.findAll());
         //assert
-        assertThat(thrown).isInstanceOf(ArtifactNotFoundException.class).hasMessage("Could not find artifacts :(");
+        assertThat(thrown).isInstanceOf(OpjectNotFoundException.class).hasMessage("Could not find any artifact :(");
     }
 
     @Test
@@ -179,9 +181,7 @@ class ArtifactServiceTest {
         //given
         given(artifactRepository.findById("16135131")).willReturn(Optional.empty());
         //when-then
-        assertThrows(ArtifactNotFoundException.class,()->{
-        artifactService.updateArtifact("16135131",updated);
-        });
+        assertThrows(OpjectNotFoundException.class,()-> artifactService.updateArtifact("16135131",updated));
         verify(artifactRepository,times(1)).findById("16135131");
     }
     @Test
@@ -208,9 +208,7 @@ class ArtifactServiceTest {
         //given
         given(artifactRepository.findById("16135131")).willReturn(Optional.empty());
         //when-then
-        assertThrows(ArtifactNotFoundException.class,()->{
-            artifactService.deleteArtifact("16135131");
-        });
+        assertThrows(OpjectNotFoundException.class,()-> artifactService.deleteArtifact("16135131"));
         verify(artifactRepository,times(1)).findById("16135131");
     }
 }

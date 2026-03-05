@@ -1,5 +1,6 @@
 package com.felfel.hogwarts_artifacts_online.wizard;
 
+import com.felfel.hogwarts_artifacts_online.system.exception.OpjectNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,8 +63,8 @@ class WizardServiceTest {
         //when
         Throwable thrown = catchThrowable(()->wizardService.findAll());
         //then
-        assertThat(thrown).isInstanceOf(WizardNotFoundException.class)
-                .hasMessage("Could not find wizards :(");
+        assertThat(thrown).isInstanceOf(OpjectNotFoundException.class)
+                .hasMessage("Could not find any wizard :(");
 
     }
 
@@ -106,7 +107,7 @@ class WizardServiceTest {
         //when
         Throwable thrown = catchThrowable(()->wizardService.findById(1));
         //then
-        assertThat(thrown).isInstanceOf(WizardNotFoundException.class)
+        assertThat(thrown).isInstanceOf(OpjectNotFoundException.class)
                 .hasMessage("Could not find wizard with ID 1 :(");
     }
 
@@ -140,9 +141,7 @@ class WizardServiceTest {
         //given
         given(wizardRepository.findById(1)).willReturn(Optional.empty());
         //when-then
-        assertThrows(WizardNotFoundException.class,()->{
-            wizardService.updateWizard(1,updatedWizard);
-        });
+        assertThrows(OpjectNotFoundException.class,()-> wizardService.updateWizard(1,updatedWizard));
         verify(wizardRepository,times(1)).findById(1);
     }
 
@@ -164,9 +163,7 @@ class WizardServiceTest {
         //given
         given(wizardRepository.findById(1)).willReturn(Optional.empty());
         //when-then
-        assertThrows(WizardNotFoundException.class,()->{
-            wizardService.deleteWizard(1);
-        });
+        assertThrows(OpjectNotFoundException.class,()-> wizardService.deleteWizard(1));
         verify(wizardRepository,times(1)).findById(1);
     }
 }

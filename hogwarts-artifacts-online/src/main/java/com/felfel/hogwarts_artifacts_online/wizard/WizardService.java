@@ -1,12 +1,13 @@
 package com.felfel.hogwarts_artifacts_online.wizard;
 
-import jakarta.validation.constraints.NotEmpty;
+import com.felfel.hogwarts_artifacts_online.system.exception.OpjectNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class WizardService {
     private final WizardRepository wizardRepository;
+    private final String OBJECT_TYPE="wizard";
 
     public WizardService(WizardRepository wizardRepository) {
         this.wizardRepository = wizardRepository;
@@ -16,7 +17,7 @@ public class WizardService {
         List<Wizard> wizardList = this.wizardRepository.findAll();
         if(wizardList.isEmpty())
         {
-            throw new WizardNotFoundException();
+            throw new OpjectNotFoundException(OBJECT_TYPE);
         }
         return wizardList;
     }
@@ -28,7 +29,7 @@ public class WizardService {
     public Wizard findById(Integer wizardId) {
         return this.wizardRepository
                 .findById(wizardId)
-                .orElseThrow(()->new WizardNotFoundException(wizardId));
+                .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,wizardId));
     }
 
     public Wizard updateWizard(Integer wizardId, Wizard newWizard) {
@@ -36,13 +37,13 @@ public class WizardService {
                 .map(wizard -> {
                     wizard.setName(newWizard.getName());
                     return this.wizardRepository.save(wizard);
-                }).orElseThrow(() -> new WizardNotFoundException(wizardId)
+                }).orElseThrow(() -> new OpjectNotFoundException(OBJECT_TYPE,wizardId)
                 );
     }
 
     public void deleteWizard(Integer wizardId) {
         this.wizardRepository.findById(wizardId)
-                .orElseThrow(()->new WizardNotFoundException(wizardId));
+                .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,wizardId));
         this.wizardRepository.deleteById(wizardId);
     }
 }

@@ -1,7 +1,8 @@
 package com.felfel.hogwarts_artifacts_online.artifact;
 
-import com.felfel.hogwarts_artifacts_online.artifact.dto.ArtifactDto;
+
 import com.felfel.hogwarts_artifacts_online.artifact.utils.IdWorker;
+import com.felfel.hogwarts_artifacts_online.system.exception.OpjectNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Transactional
 public class ArtifactService {
 
+    private final String OBJECT_TYPE="artifact";
     private final ArtifactRepository artifactRepository;
     private final IdWorker idWorker;
 
@@ -21,7 +23,7 @@ public class ArtifactService {
     public Artifact findById(String artifactId)
     {
         return this.artifactRepository.findById(artifactId)
-                .orElseThrow(() -> new ArtifactNotFoundException(artifactId));
+                .orElseThrow(() -> new OpjectNotFoundException(OBJECT_TYPE,artifactId));
     }
 
     public List<Artifact> findAll()
@@ -29,7 +31,7 @@ public class ArtifactService {
         List<Artifact> artifacts = this.artifactRepository.findAll();
         if(artifacts.isEmpty())
         {
-            throw new ArtifactNotFoundException();
+            throw new OpjectNotFoundException(OBJECT_TYPE);
         }
          return artifacts;
     }
@@ -47,12 +49,12 @@ public class ArtifactService {
             artifact.setDescription(updatedArtifact.getDescription());
             artifact.setImageUrl(updatedArtifact.getImageUrl());
             return this.artifactRepository.save(artifact);
-        }).orElseThrow(() -> new ArtifactNotFoundException(ArtifactId));
+        }).orElseThrow(() -> new OpjectNotFoundException(OBJECT_TYPE,ArtifactId));
     }
 
     public void deleteArtifact(String artifactId) {
         Artifact artifact = this.artifactRepository.findById(artifactId)
-                .orElseThrow(()->new ArtifactNotFoundException(artifactId));
+                .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,artifactId));
         this.artifactRepository.deleteById(artifactId);
     }
 }

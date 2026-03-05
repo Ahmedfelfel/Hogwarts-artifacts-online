@@ -5,13 +5,12 @@ import com.felfel.hogwarts_artifacts_online.wizard.coverter.WizardDtoToWizardCon
 import com.felfel.hogwarts_artifacts_online.wizard.coverter.WizardToWizardDtoConverter;
 import com.felfel.hogwarts_artifacts_online.wizard.dto.WizardDto;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("${api.endpoint.base-url}")
 public class WizardController {
 
     private final WizardService wizardService;

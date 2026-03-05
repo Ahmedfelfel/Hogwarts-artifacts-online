@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="948ca080-56ca-4f0f-bcbd-68308ed05dc3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/exception/ExceptionHandlerAdvise.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/exception/ExceptionHandlerAdvise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardNotFoundException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/dto/WizardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/dto/WizardDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" afterDir="false" />
     </list>
@@ -139,6 +144,7 @@
     "JUnit.WizardServiceTest.updateWizardFailed.executor": "Run",
     "JUnit.WizardServiceTest.updateWizardSuccess.executor": "Run",
     "JUnit.artifact in hogwarts-artifacts-online.executor": "Run",
+    "JUnit.java in hogwarts-artifacts-online.executor": "Run",
     "Maven.hogwarts-artifacts-online [clean].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
@@ -149,7 +155,7 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "wizard-crud",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/java projects/java-projects/Hogwarts Springboot/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact",
@@ -174,11 +180,12 @@
       <recent name="com.felfel.hogwarts_artifacts_online.artifact" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.felfel.hogwarts_artifacts_online.system.exception" />
       <recent name="com.felfel.hogwarts_artifacts_online.wizard.coverter" />
       <recent name="com.felfel.hogwarts_artifacts_online.artifact.coverter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WizardControllerTest.updateWizardSuccess">
+  <component name="RunManager" selected="JUnit.java in hogwarts-artifacts-online">
     <configuration name="WizardControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hogwarts-artifacts-online" />
       <extension name="coverage">
@@ -205,22 +212,6 @@
       <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
       <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
       <option name="METHOD_NAME" value="addWizardSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WizardControllerTest.findAllWizardsFailed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hogwarts-artifacts-online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
-      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
-      <option name="METHOD_NAME" value="findAllWizardsFailed" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -257,13 +248,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="java in hogwarts-artifacts-online" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in hogwarts-artifacts-online" />
         <item itemvalue="JUnit.WizardControllerTest.updateWizardSuccess" />
         <item itemvalue="JUnit.WizardControllerTest" />
         <item itemvalue="JUnit.WizardServiceTest" />
         <item itemvalue="JUnit.WizardControllerTest.addWizardSuccess" />
-        <item itemvalue="JUnit.WizardControllerTest.findAllWizardsFailed" />
       </list>
     </recent_temporary>
   </component>
