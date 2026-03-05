@@ -13,12 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
@@ -140,7 +137,7 @@ class ArtifactControllerTest {
         savedArtifact.setName("artifact");
         savedArtifact.setDescription("desc");
         savedArtifact.setImageUrl("url");
-        given(this.artifactService.updateArtifact("123456",Mockito.any(Artifact.class))).willReturn(savedArtifact);
+        given(this.artifactService.saveArtifact(Mockito.any(Artifact.class))).willReturn(savedArtifact);
         //when-then
         this.mockMvc.perform(post("/api/v1/artifacts")
                         .contentType(MediaType.APPLICATION_JSON)
