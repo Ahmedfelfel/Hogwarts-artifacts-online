@@ -1,10 +1,7 @@
 package com.felfel.hogwarts_artifacts_online.wizard;
 
 import com.felfel.hogwarts_artifacts_online.artifact.Artifact;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +15,7 @@ import java.util.List;
 public class Wizard implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;

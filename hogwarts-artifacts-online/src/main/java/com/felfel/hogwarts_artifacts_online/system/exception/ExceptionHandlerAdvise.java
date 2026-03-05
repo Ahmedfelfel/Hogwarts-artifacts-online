@@ -2,6 +2,7 @@ package com.felfel.hogwarts_artifacts_online.system.exception;
 
 import com.felfel.hogwarts_artifacts_online.artifact.ArtifactNotFoundException;
 import com.felfel.hogwarts_artifacts_online.system.Result;
+import com.felfel.hogwarts_artifacts_online.wizard.WizardNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -39,6 +40,13 @@ public class ExceptionHandlerAdvise {
                                 HttpStatus.BAD_REQUEST.value(),
                         "Provided arguments are invalid",
                                 map);
+    }
+
+    @ExceptionHandler(WizardNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    Result handleWizardNotFoundException(WizardNotFoundException ex)
+    {
+        return new Result(false, HttpStatus.NOT_FOUND.value(),ex.getMessage());
     }
 
 }
