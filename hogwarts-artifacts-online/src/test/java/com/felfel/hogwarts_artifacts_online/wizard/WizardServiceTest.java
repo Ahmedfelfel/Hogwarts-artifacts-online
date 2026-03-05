@@ -69,14 +69,16 @@ class WizardServiceTest {
 
     @Test
     void saveWizard() {
-        String wizardName = "felfel";
+        Wizard newWizard = new Wizard();
+        newWizard.setName("ahmed");
+
             Wizard w = new Wizard();
-            w.setName(wizardName);
+            w.setName("ahmed");
             w.setId(1);
             //given
             given(wizardRepository.save(any(Wizard.class))).willReturn(w);
             //when
-            Wizard savedWizard = wizardService.saveWizard(wizardName);
+            Wizard savedWizard = wizardService.saveWizard(newWizard);
             //then
             assertThat(savedWizard.getName()).isEqualTo(w.getName());
             assertThat(savedWizard).isNotNull();
@@ -122,7 +124,7 @@ class WizardServiceTest {
         given(wizardRepository.findById(1)).willReturn(Optional.of(oldWizard));
         given(wizardRepository.save(any(Wizard.class))).willReturn(updatedWizard);
         //when
-        Wizard result = wizardService.updateWizard(1, "ahmed");
+        Wizard result = wizardService.updateWizard(1, updatedWizard);
         //then
         assertThat(result.getId()).isEqualTo(updatedWizard.getId());
         assertThat(result.getName()).isEqualTo(updatedWizard.getName());
@@ -132,12 +134,14 @@ class WizardServiceTest {
     }
     @Test
     void updateWizardFailed() {
-        String updatedWizardName= "felfel";
+        Wizard updatedWizard= new Wizard();
+        updatedWizard.setId(1);
+        updatedWizard.setName("ahmed");
         //given
         given(wizardRepository.findById(1)).willReturn(Optional.empty());
         //when-then
         assertThrows(WizardNotFoundException.class,()->{
-            wizardService.updateWizard(1,updatedWizardName);
+            wizardService.updateWizard(1,updatedWizard);
         });
         verify(wizardRepository,times(1)).findById(1);
     }

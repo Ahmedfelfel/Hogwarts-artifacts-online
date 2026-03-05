@@ -21,10 +21,8 @@ public class WizardService {
         return wizardList;
     }
 
-    public Wizard saveWizard(String wizardName) {
-        Wizard newWizard = new Wizard();
-        newWizard.setName(wizardName);
-        return this.wizardRepository.save(newWizard);
+    public Wizard saveWizard(Wizard wizard) {
+        return this.wizardRepository.save(wizard);
     }
 
     public Wizard findById(Integer wizardId) {
@@ -33,10 +31,10 @@ public class WizardService {
                 .orElseThrow(()->new WizardNotFoundException(wizardId));
     }
 
-    public Wizard updateWizard(Integer wizardId, @NotEmpty String newWizardName) {
+    public Wizard updateWizard(Integer wizardId, Wizard newWizard) {
         return wizardRepository.findById(wizardId)
                 .map(wizard -> {
-                    wizard.setName(newWizardName);
+                    wizard.setName(newWizard.getName());
                     return this.wizardRepository.save(wizard);
                 }).orElseThrow(() -> new WizardNotFoundException(wizardId)
                 );

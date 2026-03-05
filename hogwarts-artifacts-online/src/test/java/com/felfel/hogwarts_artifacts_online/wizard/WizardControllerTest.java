@@ -1,11 +1,13 @@
 package com.felfel.hogwarts_artifacts_online.wizard;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.felfel.hogwarts_artifacts_online.wizard.dto.WizardDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +23,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@SpringBootTest
+@WebMvcTest(WizardController.class)
 @AutoConfigureMockMvc
 class WizardControllerTest {
 
@@ -85,7 +87,7 @@ class WizardControllerTest {
         //given
         given(this.wizardService.findById(1)).willReturn(this.wizardList.getFirst());
         //when-then
-        this.mockMvc.perform(get("/api/v1/wizards/{wizardId}").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/api/v1/wizards/1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.flag").value(true))
                 .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
                 .andExpect(jsonPath("$.message").value("find one success"))
@@ -98,34 +100,33 @@ class WizardControllerTest {
         //given
         given(this.wizardService.findById(1)).willThrow(new WizardNotFoundException(1));
         //when-then
-        this.mockMvc.perform(get("/api/v1/wizards/{wizardId}").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/api/v1/wizards/1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.flag").value(false))
                 .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
-                .andExpect(jsonPath("$.data.id").isEmpty());
-
+                .andExpect(jsonPath("$.data").isEmpty());
 
     }
 
     @Test
     void addWizardSuccess() throws Exception {
-        String wizardName="name";
-        String json = objectMapper.writeValueAsString(wizardName);
+        WizardDto wizardDto=new WizardDto(null,"name",null);
+        String json = objectMapper.writeValueAsString(wizardDto);
 
         Wizard saved =new Wizard();
         saved.setId(1);
-        saved.setName(wizardName);
+        saved.setName("name");
 
         //given
-        given(this.wizardService.saveWizard(wizardName)).willReturn(saved);
+        given(this.wizardService.saveWizard(Mockito.any(Wizard.class))).willReturn(saved);
         //when-then
-        this.mockMvc.perform(post("/api/v1/wizards/")
+        this.mockMvc.perform(post("/api/v1/wizards")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.flag").value(true))
-                .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
-                .andExpect(jsonPath("$.message").value("add one success"))
+                .andExpect(jsonPath("$.code").value(HttpStatus.CREATED.value()))
+                .andExpect(jsonPath("$.message").value("add success"))
                 .andExpect(jsonPath("$.data.id").value(saved.getId()))
                 .andExpect(jsonPath("$.data.name").value(saved.getName()));
 
@@ -133,15 +134,18 @@ class WizardControllerTest {
 
     @Test
     void updateWizardSuccess() throws Exception {
-        String wizardName="name";
-        String json = objectMapper.writeValueAsString(wizardName);
+        WizardDto wizardDto=new WizardDto(1,
+                                        "name",
+                                        null);
+        String json = objectMapper.writeValueAsString(wizardDto);
         Wizard updated =new Wizard();
         updated.setId(1);
-        updated.setName(wizardName);
+        updated.setName("wizardName");
         //given
-        given(this.wizardService.updateWizard(eq(1),wizardName)).willReturn(updated);
+        given(this.wizardService.updateWizard(eq(1),Mockito.any(Wizard.class)))
+                .willReturn(updated);
         //when-then
-        this.mockMvc.perform(put("/api/v1/wizards/{wizardId}")
+        this.mockMvc.perform(put("/api/v1/wizards/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                         .accept(MediaType.APPLICATION_JSON))
@@ -154,19 +158,21 @@ class WizardControllerTest {
     }
     @Test
     void updateWizardErrorIdNotFound() throws Exception {
-        String wizardName="name";
-        String json = objectMapper.writeValueAsString(wizardName);
+        WizardDto wizardDto=new WizardDto(1,
+                "name",
+                null);
+        String json = objectMapper.writeValueAsString(wizardDto);
         //given
-        given(this.wizardService.updateWizard(eq(1),Mockito.anyString())).willThrow(new WizardNotFoundException(1));
+        given(this.wizardService.updateWizard(eq(1),Mockito.any(Wizard.class))).willThrow(new WizardNotFoundException(1));
         //when-then
-        this.mockMvc.perform(put("/api/v1/wizards/{wizardId}")
+        this.mockMvc.perform(put("/api/v1/wizards/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.flag").value(false))
                 .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
-                .andExpect(jsonPath("$.data.id").isEmpty());
+                .andExpect(jsonPath("$.data").isEmpty());
     }
 
     @Test
@@ -174,23 +180,23 @@ class WizardControllerTest {
         //given
         doNothing().when(wizardService).deleteWizard(1);
         //when-then
-        this.mockMvc.perform(delete("/api/v1/wizards/{wizardId}")
+        this.mockMvc.perform(delete("/api/v1/wizards/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.flag").value(true))
                 .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
                 .andExpect(jsonPath("$.message").value("delete success"))
-                .andExpect(jsonPath("$.data.id").isEmpty());
+                .andExpect(jsonPath("$.data").isEmpty());
     }
     @Test
     void deleteWizardErrorIdNotFound() throws Exception {
         //given
         doThrow(new WizardNotFoundException(1)).when(wizardService).deleteWizard(1);
         //when-then
-        this.mockMvc.perform(delete("/api/v1/wizards/{wizardId}")
+        this.mockMvc.perform(delete("/api/v1/wizards/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.flag").value(false))
                 .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
-                .andExpect(jsonPath("$.data.id").isEmpty());
+                .andExpect(jsonPath("$.data").isEmpty());
     }
 }

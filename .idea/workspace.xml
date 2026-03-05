@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="948ca080-56ca-4f0f-bcbd-68308ed05dc3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/HogwartsArtifactsOnlineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/HogwartsArtifactsOnlineApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/Wizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/exception/ExceptionHandlerAdvise.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/exception/ExceptionHandlerAdvise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/dto/WizardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/dto/WizardDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/artifact/ArtifactControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +60,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="wizard-crud" />
-                    <option name="lastUsedInstant" value="1772635993" />
+                    <option name="lastUsedInstant" value="1772717462" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -119,7 +123,11 @@
     "JUnit.ArtifactServiceTest.testSaveArtifactSuccess.executor": "Run",
     "JUnit.ArtifactServiceTest.testUpdateArtifactNotFound.executor": "Run",
     "JUnit.ArtifactServiceTest.testUpdateArtifactSuccess.executor": "Run",
+    "JUnit.WizardControllerTest.addWizardSuccess.executor": "Run",
     "JUnit.WizardControllerTest.executor": "Run",
+    "JUnit.WizardControllerTest.findAllWizardsFailed.executor": "Run",
+    "JUnit.WizardControllerTest.findAllWizardsSuccess.executor": "Run",
+    "JUnit.WizardControllerTest.findWizardByIdSuccess.executor": "Run",
     "JUnit.WizardServiceTest.deleteWizardSuccess.executor": "Run",
     "JUnit.WizardServiceTest.executor": "Run",
     "JUnit.WizardServiceTest.findAllFailed.executor": "Run",
@@ -166,25 +174,11 @@
       <recent name="com.felfel.hogwarts_artifacts_online.artifact" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.felfel.hogwarts_artifacts_online.wizard.coverter" />
       <recent name="com.felfel.hogwarts_artifacts_online.artifact.coverter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ArtifactControllerTest">
-    <configuration name="ArtifactControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hogwarts-artifacts-online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.artifact.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.artifact" />
-      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.artifact.ArtifactControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.WizardControllerTest.updateWizardSuccess">
     <configuration name="WizardControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hogwarts-artifacts-online" />
       <extension name="coverage">
@@ -196,6 +190,54 @@
       <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
       <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WizardControllerTest.addWizardSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
+      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
+      <option name="METHOD_NAME" value="addWizardSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WizardControllerTest.findAllWizardsFailed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
+      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
+      <option name="METHOD_NAME" value="findAllWizardsFailed" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WizardControllerTest.updateWizardSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
+      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
+      <option name="METHOD_NAME" value="updateWizardSuccess" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -215,45 +257,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WizardServiceTest.deleteWizardSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hogwarts-artifacts-online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
-      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardServiceTest" />
-      <option name="METHOD_NAME" value="deleteWizardSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WizardServiceTest.updateWizardFailed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hogwarts-artifacts-online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
-      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardServiceTest" />
-      <option name="METHOD_NAME" value="updateWizardFailed" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ArtifactControllerTest" />
+        <item itemvalue="JUnit.WizardControllerTest.updateWizardSuccess" />
         <item itemvalue="JUnit.WizardControllerTest" />
         <item itemvalue="JUnit.WizardServiceTest" />
-        <item itemvalue="JUnit.WizardServiceTest.deleteWizardSuccess" />
-        <item itemvalue="JUnit.WizardServiceTest.updateWizardFailed" />
+        <item itemvalue="JUnit.WizardControllerTest.addWizardSuccess" />
+        <item itemvalue="JUnit.WizardControllerTest.findAllWizardsFailed" />
       </list>
     </recent_temporary>
   </component>

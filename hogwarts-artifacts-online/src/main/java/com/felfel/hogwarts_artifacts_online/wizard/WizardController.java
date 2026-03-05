@@ -1,8 +1,10 @@
 package com.felfel.hogwarts_artifacts_online.wizard;
 
 import com.felfel.hogwarts_artifacts_online.system.Result;
+import com.felfel.hogwarts_artifacts_online.wizard.coverter.WizardDtoToWizardConverter;
 import com.felfel.hogwarts_artifacts_online.wizard.coverter.WizardToWizardDtoConverter;
 import com.felfel.hogwarts_artifacts_online.wizard.dto.WizardDto;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +16,15 @@ public class WizardController {
 
     private final WizardService wizardService;
     private final WizardToWizardDtoConverter wizardToWizardDtoConverter;
+    private final WizardDtoToWizardConverter wizardDtoToWizardConverter;
 
-    public WizardController(WizardService wizardService, WizardToWizardDtoConverter wizardToWizardDtoConverter) {
+    public WizardController(WizardService wizardService, WizardToWizardDtoConverter wizardToWizardDtoConverter, WizardDtoToWizardConverter wizardDtoToWizardConverter) {
         this.wizardService = wizardService;
         this.wizardToWizardDtoConverter = wizardToWizardDtoConverter;
+        this.wizardDtoToWizardConverter = wizardDtoToWizardConverter;
     }
 
-    @GetMapping("wizards")
+    @GetMapping("/wizards")
     public Result findAllWizards()
     {
         List<Wizard> wizardList = wizardService.findAll();
@@ -38,16 +42,18 @@ public class WizardController {
         return new Result(true, HttpStatus.OK.value(), "find one success", wizardDto);
     }
     @PostMapping("/wizards")
-    public Result addWizard(@NotEmpty @RequestParam String wizardName)
+    public Result addWizard(@Valid @RequestBody WizardDto wizarddto)
     {
-        Wizard savedWizard = wizardService.saveWizard(wizardName);
+        Wizard wizard = wizardDtoToWizardConverter.convert(wizarddto);
+        Wizard savedWizard = wizardService.saveWizard(wizard);
         WizardDto savedWizardDto = wizardToWizardDtoConverter.convert(savedWizard);
         return new Result(true, HttpStatus.CREATED.value(), "add success", savedWizardDto);
     }
     @PutMapping("/wizards/{wizardId}")
-    public Result updateWizard(@NotEmpty @RequestParam String newWizardName,@PathVariable Integer wizardId)
+    public Result updateWizard(@Valid @RequestBody WizardDto wizardDto,@PathVariable Integer wizardId)
     {
-        Wizard updatedWizard = wizardService.updateWizard(wizardId, newWizardName);
+        Wizard recivedWizard = wizardDtoToWizardConverter.convert(wizardDto);
+        Wizard updatedWizard = wizardService.updateWizard(wizardId, recivedWizard);
         WizardDto updatedWizardDto = wizardToWizardDtoConverter.convert(updatedWizard);
         return new Result(true,HttpStatus.OK.value(), "update success",updatedWizardDto);
     }
