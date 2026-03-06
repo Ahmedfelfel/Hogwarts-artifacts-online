@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="948ca080-56ca-4f0f-bcbd-68308ed05dc3" name="Changes" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/DBDataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/DBDataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/Wizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +76,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="wizard-crud" />
-                    <option name="lastUsedInstant" value="1772717462" />
+                    <option name="branchName" value="artifact-assignment" />
+                    <option name="lastUsedInstant" value="1772813570" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -113,64 +117,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.ArtifactControllerTest.addArtifactSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.deleteArtifactErrorIdNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.deleteArtifactSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.findAllFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.findAllSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.findArtifactById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.findArtifactByIdFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.findArtifactByIdSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.updateArtifactErrorIdNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactControllerTest.updateArtifactSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.deleteArtifactErrorNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.deleteArtifactSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testFindAllFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testFindAllSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testFindByIdNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testFindByIdSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testSaveArtifactSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testUpdateArtifactNotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArtifactServiceTest.testUpdateArtifactSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardControllerTest.addWizardSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardControllerTest.findAllWizardsFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardControllerTest.findAllWizardsSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardControllerTest.findWizardByIdSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.deleteWizardSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.findAllFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.findAllSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.findByIdFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.findByIdSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.saveWizard.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.updateWizard.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.updateWizardFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.WizardServiceTest.updateWizardSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.artifact in hogwarts-artifacts-online.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in hogwarts-artifacts-online.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.hogwarts-artifacts-online [clean].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.HogwartsArtifactsOnlineApplication.executor&quot;: &quot;Run&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/java projects/java-projects/Hogwarts Springboot/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ArtifactControllerTest.addArtifactSuccess.executor": "Run",
+    "JUnit.ArtifactControllerTest.deleteArtifactErrorIdNotFound.executor": "Run",
+    "JUnit.ArtifactControllerTest.deleteArtifactSuccess.executor": "Run",
+    "JUnit.ArtifactControllerTest.executor": "Run",
+    "JUnit.ArtifactControllerTest.findAllFailed.executor": "Run",
+    "JUnit.ArtifactControllerTest.findAllSuccess.executor": "Run",
+    "JUnit.ArtifactControllerTest.findArtifactById.executor": "Run",
+    "JUnit.ArtifactControllerTest.findArtifactByIdFailed.executor": "Run",
+    "JUnit.ArtifactControllerTest.findArtifactByIdSuccess.executor": "Run",
+    "JUnit.ArtifactControllerTest.updateArtifactErrorIdNotFound.executor": "Run",
+    "JUnit.ArtifactControllerTest.updateArtifactSuccess.executor": "Run",
+    "JUnit.ArtifactServiceTest.deleteArtifactErrorNotFound.executor": "Run",
+    "JUnit.ArtifactServiceTest.deleteArtifactSuccess.executor": "Run",
+    "JUnit.ArtifactServiceTest.executor": "Run",
+    "JUnit.ArtifactServiceTest.testFindAllFailed.executor": "Run",
+    "JUnit.ArtifactServiceTest.testFindAllSuccess.executor": "Run",
+    "JUnit.ArtifactServiceTest.testFindByIdNotFound.executor": "Run",
+    "JUnit.ArtifactServiceTest.testFindByIdSuccess.executor": "Run",
+    "JUnit.ArtifactServiceTest.testSaveArtifactSuccess.executor": "Run",
+    "JUnit.ArtifactServiceTest.testUpdateArtifactNotFound.executor": "Run",
+    "JUnit.ArtifactServiceTest.testUpdateArtifactSuccess.executor": "Run",
+    "JUnit.WizardControllerTest.addWizardSuccess.executor": "Run",
+    "JUnit.WizardControllerTest.assignArtifactErrorArtifactIdNotFound.executor": "Run",
+    "JUnit.WizardControllerTest.assignArtifactErrorWizardIdNotFound.executor": "Run",
+    "JUnit.WizardControllerTest.assignArtifactSuccess.executor": "Run",
+    "JUnit.WizardControllerTest.executor": "Run",
+    "JUnit.WizardControllerTest.findAllWizardsFailed.executor": "Run",
+    "JUnit.WizardControllerTest.findAllWizardsSuccess.executor": "Run",
+    "JUnit.WizardControllerTest.findWizardByIdSuccess.executor": "Run",
+    "JUnit.WizardServiceTest.assignArtifactErrorArtifactNotFound.executor": "Run",
+    "JUnit.WizardServiceTest.assignArtifactErrorWizardNotFound.executor": "Run",
+    "JUnit.WizardServiceTest.assignArtifactSuccess.executor": "Run",
+    "JUnit.WizardServiceTest.deleteWizardSuccess.executor": "Run",
+    "JUnit.WizardServiceTest.executor": "Run",
+    "JUnit.WizardServiceTest.findAllFailed.executor": "Run",
+    "JUnit.WizardServiceTest.findAllSuccess.executor": "Run",
+    "JUnit.WizardServiceTest.findByIdFailed.executor": "Run",
+    "JUnit.WizardServiceTest.findByIdSuccess.executor": "Run",
+    "JUnit.WizardServiceTest.saveWizard.executor": "Run",
+    "JUnit.WizardServiceTest.updateWizard.executor": "Run",
+    "JUnit.WizardServiceTest.updateWizardFailed.executor": "Run",
+    "JUnit.WizardServiceTest.updateWizardSuccess.executor": "Run",
+    "JUnit.artifact in hogwarts-artifacts-online.executor": "Run",
+    "JUnit.java in hogwarts-artifacts-online.executor": "Run",
+    "Maven.hogwarts-artifacts-online [clean].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.HogwartsArtifactsOnlineApplication.executor": "Run",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "artifact-assignment",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/java projects/java-projects/Hogwarts Springboot/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.felfel.hogwarts_artifacts_online.system.exception" />
@@ -193,8 +203,8 @@
       <recent name="com.felfel.hogwarts_artifacts_online.artifact.coverter" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.HogwartsArtifactsOnlineApplication">
-    <configuration name="WizardControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.WizardControllerTest.assignArtifactErrorArtifactIdNotFound">
+    <configuration name="WizardControllerTest.assignArtifactErrorArtifactIdNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hogwarts-artifacts-online" />
       <extension name="coverage">
         <pattern>
@@ -204,28 +214,45 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
       <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WizardControllerTest.updateWizardSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hogwarts-artifacts-online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
-      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
-      <option name="METHOD_NAME" value="updateWizardSuccess" />
+      <option name="METHOD_NAME" value="assignArtifactErrorArtifactIdNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WizardServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WizardControllerTest.assignArtifactErrorWizardIdNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
+      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
+      <option name="METHOD_NAME" value="assignArtifactErrorWizardIdNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WizardControllerTest.assignArtifactSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
+      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardControllerTest" />
+      <option name="METHOD_NAME" value="assignArtifactSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WizardServiceTest.assignArtifactErrorArtifactNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hogwarts-artifacts-online" />
       <extension name="coverage">
         <pattern>
@@ -235,40 +262,35 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
       <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="assignArtifactErrorArtifactNotFound" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in hogwarts-artifacts-online" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WizardServiceTest.assignArtifactErrorWizardNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hogwarts-artifacts-online" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HogwartsArtifactsOnlineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="hogwarts-artifacts-online" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.felfel.hogwarts_artifacts_online.HogwartsArtifactsOnlineApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.*" />
+          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
+      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardServiceTest" />
+      <option name="METHOD_NAME" value="assignArtifactErrorWizardNotFound" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.HogwartsArtifactsOnlineApplication" />
-        <item itemvalue="JUnit.java in hogwarts-artifacts-online" />
-        <item itemvalue="JUnit.WizardControllerTest.updateWizardSuccess" />
-        <item itemvalue="JUnit.WizardControllerTest" />
-        <item itemvalue="JUnit.WizardServiceTest" />
+        <item itemvalue="JUnit.WizardControllerTest.assignArtifactErrorArtifactIdNotFound" />
+        <item itemvalue="JUnit.WizardControllerTest.assignArtifactErrorWizardIdNotFound" />
+        <item itemvalue="JUnit.WizardControllerTest.assignArtifactSuccess" />
+        <item itemvalue="JUnit.WizardServiceTest.assignArtifactErrorArtifactNotFound" />
+        <item itemvalue="JUnit.WizardServiceTest.assignArtifactErrorWizardNotFound" />
       </list>
     </recent_temporary>
   </component>

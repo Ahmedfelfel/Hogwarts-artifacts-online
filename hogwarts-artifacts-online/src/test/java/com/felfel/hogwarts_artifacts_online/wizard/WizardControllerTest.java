@@ -207,4 +207,42 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+    @Test
+    void assignArtifactSuccess() throws Exception {
+        //given
+        doNothing().when(wizardService).assignArtifact(1,"1234567890ABCDEF");
+        //when-then
+        this.mockMvc.perform(put(this.baseUrl+"/wizards/1/artifacts/1234567890ABCDEF")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.flag").value(true))
+                .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
+                .andExpect(jsonPath("$.message").value("assign artifact success"))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+    @Test
+    void assignArtifactErrorWizardIdNotFound() throws Exception {
+        //given
+        doThrow(new OpjectNotFoundException(OBJECT_TYPE,1))
+                .when(wizardService).assignArtifact(1,"1234567890ABCDEF");
+        //when-then
+        this.mockMvc.perform(put(this.baseUrl+"/wizards/1/artifacts/1234567890ABCDEF")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.flag").value(false))
+                .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+    @Test
+    void assignArtifactErrorArtifactIdNotFound() throws Exception {
+        //given
+        doThrow(new OpjectNotFoundException("artifact","1234567890ABCDEF"))
+                .when(wizardService).assignArtifact(1,"1234567890ABCDEF");
+        //when-then
+        this.mockMvc.perform(put(this.baseUrl+"/wizards/1/artifacts/1234567890ABCDEF")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.flag").value(false))
+                .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.message").value("Could not find artifact with ID 1234567890ABCDEF :("))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
 }
