@@ -24,9 +24,7 @@ public class DBDataInitializer implements CommandLineRunner {
         Wizard w1 = new Wizard();
         Wizard w2 = new Wizard();
         w1.setName("ahmed");
-        w1.setId(1);
         w2.setName("felfel");
-        w2.setId(2);
 
         Artifact a1 =new Artifact();
         a1.setId("1234567890ABCDEF");
