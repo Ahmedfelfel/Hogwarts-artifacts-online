@@ -1,5 +1,7 @@
 package com.felfel.hogwarts_artifacts_online.wizard;
 
+import com.felfel.hogwarts_artifacts_online.artifact.Artifact;
+import com.felfel.hogwarts_artifacts_online.artifact.ArtifactRepository;
 import com.felfel.hogwarts_artifacts_online.system.exception.OpjectNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +24,9 @@ import static org.mockito.Mockito.*;
 class WizardServiceTest {
     @Mock
     WizardRepository wizardRepository;
+
+    @Mock
+    ArtifactRepository artifactRepository;
 
     @InjectMocks
     WizardService wizardService;
@@ -166,4 +171,71 @@ class WizardServiceTest {
         assertThrows(OpjectNotFoundException.class,()-> wizardService.deleteWizard(1));
         verify(wizardRepository,times(1)).findById(1);
     }
+    @Test
+    void assignArtifactSuccess()
+    {
+        //given
+        Artifact a1 =new Artifact();
+        a1.setId("1234567890ABCDEF");
+        a1.setName("Deluminator");
+        a1.setDescription("A device used to absorb light from a place and then release it.");
+        a1.setImageUrl("imageUrl");
+
+        Wizard w1 = new Wizard();
+        w1.setName("ahmed");
+        w1.setId(1);
+        w1.addArtifact(a1);
+
+        Wizard w2 = new Wizard();
+        w2.setName("felfel");
+        w2.setId(2);
+
+        given(artifactRepository.findById("1234567890ABCDEF")).willReturn(Optional.of(a1));
+        given(wizardRepository.findById(2)).willReturn(Optional.of(w2));
+        //when
+        wizardService.assignArtifact(2,"1234567890ABCDEF");
+        //then
+        assertThat(a1.getOwner().getId()).isEqualTo(w2.getId());
+        assertThat(w2.getArtifacts().contains(a1));
+        verify(artifactRepository,times(1)).findById("1234567890ABCDEF");
+        verify(wizardRepository,times(1)).findById(2);
+    }
+    @Test
+    void assignArtifactErrorArtifactNotFound()
+    {
+
+        //given
+        given(artifactRepository.findById("1234567890ABCDEF")).willReturn(Optional.empty());
+        //when
+        Throwable thrown = catchThrowable(()->wizardService.assignArtifact(2,"1234567890ABCDEF"));
+        //then
+        assertThat(thrown).isInstanceOf(OpjectNotFoundException.class)
+                .hasMessage("Could not find artifact with ID 1234567890ABCDEF :(");
+        verify(artifactRepository,times(1)).findById("1234567890ABCDEF");
+    }
+    @Test
+    void assignArtifactErrorWizardNotFound()
+    {
+        //given
+        Artifact a1 =new Artifact();
+        a1.setId("1234567890ABCDEF");
+        a1.setName("Deluminator");
+        a1.setDescription("A device used to absorb light from a place and then release it.");
+        a1.setImageUrl("imageUrl");
+
+        Wizard w1 = new Wizard();
+        w1.setName("ahmed");
+        w1.setId(1);
+        w1.addArtifact(a1);
+
+        given(artifactRepository.findById("1234567890ABCDEF")).willReturn(Optional.of(a1));
+        given(wizardRepository.findById(2)).willReturn(Optional.empty());
+        //when
+        Throwable thrown = catchThrowable(()->wizardService.assignArtifact(2,"1234567890ABCDEF"));
+        //then
+        assertThat(thrown).isInstanceOf(OpjectNotFoundException.class)
+                .hasMessage("Could not find wizard with ID 2 :(");
+        verify(wizardRepository,times(1)).findById(2);
+    }
+
 }
