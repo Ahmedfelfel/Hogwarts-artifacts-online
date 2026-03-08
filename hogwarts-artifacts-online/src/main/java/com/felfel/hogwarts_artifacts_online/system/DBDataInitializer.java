@@ -2,11 +2,14 @@ package com.felfel.hogwarts_artifacts_online.system;
 
 import com.felfel.hogwarts_artifacts_online.artifact.Artifact;
 import com.felfel.hogwarts_artifacts_online.artifact.ArtifactRepository;
+import com.felfel.hogwarts_artifacts_online.user.User;
+import com.felfel.hogwarts_artifacts_online.user.UserRepository;
 import com.felfel.hogwarts_artifacts_online.wizard.Wizard;
 import com.felfel.hogwarts_artifacts_online.wizard.WizardRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("RedundantThrows")
 @Component
 public class DBDataInitializer implements CommandLineRunner {
 
@@ -14,9 +17,12 @@ public class DBDataInitializer implements CommandLineRunner {
 
     private final WizardRepository wizardRepository;
 
-    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository) {
+    private final UserRepository userRepository;
+
+    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserRepository userRepository) {
         this.artifactRepository = artifactRepository;
         this.wizardRepository = wizardRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -54,8 +60,28 @@ public class DBDataInitializer implements CommandLineRunner {
         w1.addArtifact(a2);
         w2.addArtifact(a3);
 
+        User u1 = new User();
+        u1.setUsername("john");
+        u1.setEnabled(true);
+        u1.setRoles("admin user");
+        u1.setPassword("123");
+        User u2 = new User();
+        u2.setUsername("eric");
+        u2.setEnabled(true);
+        u2.setRoles("user");
+        u2.setPassword("123");
+        User u3 = new User();
+        u3.setUsername("tom");
+        u3.setEnabled(false);
+        u3.setRoles("user");
+        u3.setPassword("123");
+
         wizardRepository.save(w1);
         wizardRepository.save(w2);
         artifactRepository.save(a4);
+
+        userRepository.save(u1);
+        userRepository.save(u2);
+        userRepository.save(u3);
     }
 }
