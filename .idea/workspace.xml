@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="948ca080-56ca-4f0f-bcbd-68308ed05dc3" name="Changes" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/Wizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/wizard/WizardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/test/java/com/felfel/hogwarts_artifacts_online/wizard/WizardServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/DBDataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/system/DBDataInitializer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +15,7 @@
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
+      <entry key="_E:/Hogwarts-artifacts-online" value="3AfEUbxheCfvdL2M9q7N4V8GP7P" />
       <entry key="_E:/java projects/java-projects/Hogwarts Springboot" value="3A4SaE4tOjvZBr7oRaEzjNFLFFs" />
     </persistenceIdMap>
   </component>
@@ -76,8 +73,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="artifact-assignment" />
-                    <option name="lastUsedInstant" value="1772813570" />
+                    <option name="branchName" value="user-crud" />
+                    <option name="lastUsedInstant" value="1772975369" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -92,12 +89,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ahmedfelfel/School-artifacts-online.git&quot;,
-    &quot;accountId&quot;: &quot;aeb01c53-004e-4d66-bb34-7bf106fcb71b&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Ahmedfelfel/Hogwarts-artifacts-online.git",
+    "accountId": "aeb01c53-004e-4d66-bb34-7bf106fcb71b"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -173,10 +170,10 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "artifact-assignment",
+    "git-widget-placeholder": "user-crud",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/java projects/java-projects/Hogwarts Springboot/hogwarts-artifacts-online/src/main/java/com/felfel/hogwarts_artifacts_online/artifact",
+    "last_opened_file_path": "E:/Hogwarts-artifacts-online",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true"
   }
@@ -193,6 +190,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Hogwarts-artifacts-online\hogwarts-artifacts-online\src\main\java\com\felfel\hogwarts_artifacts_online" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.felfel.hogwarts_artifacts_online.wizard" />
       <recent name="com.felfel.hogwarts_artifacts_online.artifact" />
@@ -203,7 +203,15 @@
       <recent name="com.felfel.hogwarts_artifacts_online.artifact.coverter" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WizardControllerTest.assignArtifactErrorArtifactIdNotFound">
+  <component name="RunManager" selected="JUnit.All in hogwarts-artifacts-online">
+    <configuration name="All in hogwarts-artifacts-online" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hogwarts-artifacts-online" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WizardControllerTest.assignArtifactErrorArtifactIdNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hogwarts-artifacts-online" />
       <extension name="coverage">
@@ -268,29 +276,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WizardServiceTest.assignArtifactErrorWizardNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hogwarts-artifacts-online" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.felfel.hogwarts_artifacts_online.wizard.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.felfel.hogwarts_artifacts_online.wizard" />
-      <option name="MAIN_CLASS_NAME" value="com.felfel.hogwarts_artifacts_online.wizard.WizardServiceTest" />
-      <option name="METHOD_NAME" value="assignArtifactErrorWizardNotFound" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in hogwarts-artifacts-online" />
         <item itemvalue="JUnit.WizardControllerTest.assignArtifactErrorArtifactIdNotFound" />
         <item itemvalue="JUnit.WizardControllerTest.assignArtifactErrorWizardIdNotFound" />
         <item itemvalue="JUnit.WizardControllerTest.assignArtifactSuccess" />
         <item itemvalue="JUnit.WizardServiceTest.assignArtifactErrorArtifactNotFound" />
-        <item itemvalue="JUnit.WizardServiceTest.assignArtifactErrorWizardNotFound" />
       </list>
     </recent_temporary>
   </component>
