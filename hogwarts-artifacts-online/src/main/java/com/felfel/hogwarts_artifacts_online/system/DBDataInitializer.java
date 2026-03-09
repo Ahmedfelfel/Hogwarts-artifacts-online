@@ -3,7 +3,7 @@ package com.felfel.hogwarts_artifacts_online.system;
 import com.felfel.hogwarts_artifacts_online.artifact.Artifact;
 import com.felfel.hogwarts_artifacts_online.artifact.ArtifactRepository;
 import com.felfel.hogwarts_artifacts_online.user.User;
-import com.felfel.hogwarts_artifacts_online.user.UserRepository;
+import com.felfel.hogwarts_artifacts_online.user.UserService;
 import com.felfel.hogwarts_artifacts_online.wizard.Wizard;
 import com.felfel.hogwarts_artifacts_online.wizard.WizardRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -17,12 +17,13 @@ public class DBDataInitializer implements CommandLineRunner {
 
     private final WizardRepository wizardRepository;
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserRepository userRepository) {
+    public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserService userService) {
         this.artifactRepository = artifactRepository;
         this.wizardRepository = wizardRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
+
     }
 
     @Override
@@ -80,8 +81,8 @@ public class DBDataInitializer implements CommandLineRunner {
         wizardRepository.save(w2);
         artifactRepository.save(a4);
 
-        userRepository.save(u1);
-        userRepository.save(u2);
-        userRepository.save(u3);
+        userService.saveUser(u1);
+        userService.saveUser(u2);
+        userService.saveUser(u3);
     }
 }

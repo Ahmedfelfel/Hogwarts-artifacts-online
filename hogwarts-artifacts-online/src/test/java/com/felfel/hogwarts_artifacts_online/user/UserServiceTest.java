@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,13 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private UserService userService;
 
-    private List<User> userList = new ArrayList<>();
+    private final List<User> userList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -105,6 +109,7 @@ class UserServiceTest {
         addedUser.setRoles("user");
         addedUser.setPassword("123");
         given(userRepository.save(addedUser)).willReturn(savedUser);
+        given(passwordEncoder.encode(savedUser.getPassword())).willReturn("encoded");
         //when
         User returenedUser = userService.saveUser(addedUser);
         //then
@@ -115,14 +120,6 @@ class UserServiceTest {
         assertThat(returenedUser.getPassword()).isEqualTo(savedUser.getPassword());
         verify(this.userRepository,times(1)).save(addedUser);
     }
-//    @Test
-//    void addUserErrorUserNotFound() {
-//        //given
-//        given(this.userRepository.findById(5)).willReturn(Optional.empty());
-//        //when-then
-//        assertThrows(OpjectNotFoundException.class,()-> userService.findUserById(5));
-//        verify(userRepository,times(1)).findById(5);
-//    }
 
     @Test
     void updateUserSuccess() {
@@ -159,9 +156,7 @@ class UserServiceTest {
         //given
         given(this.userRepository.findById(Mockito.anyInt())).willReturn(Optional.empty());
         //when
-        assertThrows(OpjectNotFoundException.class,()->{
-            userService.updateUser(4,oldUser);
-        });
+        assertThrows(OpjectNotFoundException.class,()-> userService.updateUser(4,oldUser));
         //then
         verify(this.userRepository,times(1)).findById(4);
     }
@@ -186,9 +181,7 @@ class UserServiceTest {
         //given
         given(this.userRepository.findById(Mockito.anyInt())).willReturn(Optional.empty());
         //when
-        assertThrows(OpjectNotFoundException.class,()->{
-            userService.deleteUserById(4);
-        });
+        assertThrows(OpjectNotFoundException.class,()-> userService.deleteUserById(4));
         //then
         verify(this.userRepository,times(1)).findById(4);
     }

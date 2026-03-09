@@ -2,6 +2,11 @@ package com.felfel.hogwarts_artifacts_online.system.exception;
 
 import com.felfel.hogwarts_artifacts_online.system.Result;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AccountStatusException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,6 +43,36 @@ public class ExceptionHandlerAdvise {
                                 HttpStatus.BAD_REQUEST.value(),
                         "Provided arguments are invalid",
                                 map);
+    }
+    @ExceptionHandler({UsernameNotFoundException.class, BadCredentialsException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    Result handleAuthorizationException(Exception ex)
+    {
+        return new Result(false, HttpStatus.UNAUTHORIZED.value(),"username or password is incorrect ",ex.getMessage());
+    }
+    @ExceptionHandler(AccountStatusException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    Result handleAccountStatusException(AccountStatusException ex)
+    {
+        return new Result(false, HttpStatus.UNAUTHORIZED.value(),"user account is abnormal",ex.getMessage());
+    }
+    @ExceptionHandler(InvalidBearerTokenException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    Result handleInvalidBearerTokenException(InvalidBearerTokenException ex)
+    {
+        return new Result(false, HttpStatus.UNAUTHORIZED.value(),"access token provided is expired, revoked, malformed, or invalid",ex.getMessage());
+    }
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    Result handleAccessDeniedException(AccessDeniedException ex)
+    {
+        return new Result(false, HttpStatus.FORBIDDEN.value(),"no permission",ex.getMessage());
+    }
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    Result handleOtherException(Exception ex)
+    {
+        return new Result(false, HttpStatus.INTERNAL_SERVER_ERROR.value(),"Internal server error.",ex.getMessage());
     }
 
 }
