@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(WizardController.class)
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 class WizardControllerTest {
 
     @MockitoBean
@@ -33,6 +33,7 @@ class WizardControllerTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
 
     @Autowired
     MockMvc mockMvc;

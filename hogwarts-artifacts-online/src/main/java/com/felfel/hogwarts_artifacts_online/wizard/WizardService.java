@@ -46,8 +46,9 @@ public class WizardService {
     }
 
     public void deleteWizard(Integer wizardId) {
-        this.wizardRepository.findById(wizardId)
+        Wizard wizard=this.wizardRepository.findById(wizardId)
                 .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,wizardId));
+        wizard.removeAllArtifact(wizard.getArtifacts());
         this.wizardRepository.deleteById(wizardId);
     }
 
