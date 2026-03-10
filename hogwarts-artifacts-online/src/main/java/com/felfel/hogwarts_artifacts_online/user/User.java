@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * The type User.
+ */
 @Data
 @Entity
 @AllArgsConstructor

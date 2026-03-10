@@ -6,17 +6,31 @@ import com.felfel.hogwarts_artifacts_online.system.exception.OpjectNotFoundExcep
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * The type Wizard service.
+ */
 @Service
 public class WizardService {
     private final WizardRepository wizardRepository;
     private final ArtifactRepository artifactRepository;
     private final String OBJECT_TYPE="wizard";
 
+    /**
+     * Instantiates a new Wizard service.
+     *
+     * @param wizardRepository   the wizard repository
+     * @param artifactRepository the artifact repository
+     */
     public WizardService(WizardRepository wizardRepository, ArtifactRepository artifactRepository) {
         this.wizardRepository = wizardRepository;
         this.artifactRepository = artifactRepository;
     }
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<Wizard> findAll() {
         List<Wizard> wizardList = this.wizardRepository.findAll();
         if(wizardList.isEmpty())
@@ -26,16 +40,35 @@ public class WizardService {
         return wizardList;
     }
 
+    /**
+     * Save wizard wizard.
+     *
+     * @param wizard the wizard
+     * @return the wizard
+     */
     public Wizard saveWizard(Wizard wizard) {
         return this.wizardRepository.save(wizard);
     }
 
+    /**
+     * Find by id wizard.
+     *
+     * @param wizardId the wizard id
+     * @return the wizard
+     */
     public Wizard findById(Integer wizardId) {
         return this.wizardRepository
                 .findById(wizardId)
                 .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,wizardId));
     }
 
+    /**
+     * Update wizard wizard.
+     *
+     * @param wizardId  the wizard id
+     * @param newWizard the new wizard
+     * @return the wizard
+     */
     public Wizard updateWizard(Integer wizardId, Wizard newWizard) {
         return wizardRepository.findById(wizardId)
                 .map(wizard -> {
@@ -45,6 +78,11 @@ public class WizardService {
                 );
     }
 
+    /**
+     * Delete wizard.
+     *
+     * @param wizardId the wizard id
+     */
     public void deleteWizard(Integer wizardId) {
         Wizard wizard=this.wizardRepository.findById(wizardId)
                 .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,wizardId));
@@ -52,6 +90,12 @@ public class WizardService {
         this.wizardRepository.deleteById(wizardId);
     }
 
+    /**
+     * Assign artifact.
+     *
+     * @param wizardId   the wizard id
+     * @param artifactId the artifact id
+     */
     public void assignArtifact(Integer wizardId, String artifactId) {
         Artifact artifactToBeAssigned = artifactRepository.findById(artifactId)
                 .orElseThrow(()->new OpjectNotFoundException("artifact",artifactId));

@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
 
+/**
+ * The type User service.
+ */
 @Service
 @Transactional
 public class UserService implements UserDetailsService {
@@ -20,11 +23,22 @@ public class UserService implements UserDetailsService {
 
     private final String OBJECT_TYPE="user";
 
+    /**
+     * Instantiates a new User service.
+     *
+     * @param passwordEncoder the password encoder
+     * @param userRepository  the user repository
+     */
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<User> findAll()
     {
         List<User> foundUsers = this.userRepository.findAll();
@@ -34,16 +48,38 @@ public class UserService implements UserDetailsService {
         }
         return foundUsers;
     }
+
+    /**
+     * Find user by id user.
+     *
+     * @param userId the user id
+     * @return the user
+     */
     public User findUserById(Integer userId)
     {
         return this.userRepository.findById(userId)
                 .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,userId));
     }
+
+    /**
+     * Save user user.
+     *
+     * @param newUser the new user
+     * @return the user
+     */
     public User saveUser(User newUser)
     {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         return this.userRepository.save(newUser);
     }
+
+    /**
+     * Update user user.
+     *
+     * @param userId  the user id
+     * @param newUser the new user
+     * @return the user
+     */
     public User updateUser(Integer userId, User newUser) {
         return this.userRepository.findById(userId).map(
                 (oldUser)->{
@@ -53,6 +89,12 @@ public class UserService implements UserDetailsService {
                     return this.userRepository.save(oldUser);
                 }).orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,userId));
     }
+
+    /**
+     * Delete user by id.
+     *
+     * @param userId the user id
+     */
     public void deleteUserById(Integer userId)
     {
         this.userRepository.findById(userId)

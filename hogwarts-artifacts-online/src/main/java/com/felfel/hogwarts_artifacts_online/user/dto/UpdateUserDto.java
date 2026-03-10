@@ -2,6 +2,9 @@ package com.felfel.hogwarts_artifacts_online.user.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 
+/**
+ * The type Update user dto.
+ */
 public record UpdateUserDto (
         @NotEmpty(message = "username is required")
         String username,

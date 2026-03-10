@@ -39,11 +39,20 @@ public class IdWorker {
     private final long datacenterId;
 
 
+    /**
+     * Instantiates a new Id worker.
+     */
     public IdWorker() {
         this.datacenterId = getDatacenterId(maxDatacenterId);
         this.workerId = getMaxWorkerId(datacenterId, maxWorkerId);
     }
 
+    /**
+     * Instantiates a new Id worker.
+     *
+     * @param workerId     the worker id
+     * @param datacenterId the datacenter id
+     */
     public IdWorker(long workerId, long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
@@ -55,6 +64,11 @@ public class IdWorker {
         this.datacenterId = datacenterId;
     }
 
+    /**
+     * Next id long.
+     *
+     * @return the long
+     */
     public synchronized long nextId() {
         long timestamp = timeGen();
         if (timestamp < lastTimestamp) {
@@ -87,6 +101,13 @@ public class IdWorker {
         return System.currentTimeMillis();
     }
 
+    /**
+     * Gets max worker id.
+     *
+     * @param datacenterId the datacenter id
+     * @param maxWorkerId  the max worker id
+     * @return the max worker id
+     */
     protected static long getMaxWorkerId(long datacenterId, long maxWorkerId) {
         StringBuffer mpid = new StringBuffer();
         mpid.append(datacenterId);
@@ -97,6 +118,12 @@ public class IdWorker {
         return (mpid.toString().hashCode() & 0xffff) % (maxWorkerId + 1);
     }
 
+    /**
+     * Gets datacenter id.
+     *
+     * @param maxDatacenterId the max datacenter id
+     * @return the datacenter id
+     */
     protected static long getDatacenterId(long maxDatacenterId) {
         long id = 0L;
         try {

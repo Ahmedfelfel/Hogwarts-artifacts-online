@@ -20,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
+/**
+ * The type Artifact service test.
+ */
 @ExtendWith(MockitoExtension.class)
 class ArtifactServiceTest {
 
@@ -33,8 +36,14 @@ class ArtifactServiceTest {
     private ArtifactService artifactService;
 
 
+    /**
+     * The Artifact list.
+     */
     List<Artifact> artifactList = new ArrayList<>();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Artifact a1 =new Artifact();
@@ -65,10 +74,16 @@ class ArtifactServiceTest {
 
     }
 
+    /**
+     * Tear down.
+     */
     @AfterEach
     void tearDown() {
     }
 
+    /**
+     * Test find by id success.
+     */
     @Test
     void testFindByIdSuccess() {
         //given
@@ -91,6 +106,10 @@ class ArtifactServiceTest {
         assertThat(foundArtifact.getImageUrl()).isEqualTo(a.getImageUrl());
         verify(artifactRepository,times(1)).findById("16135131");
     }
+
+    /**
+     * Test find by id not found.
+     */
     @Test
     void testFindByIdNotFound()
     {
@@ -101,6 +120,10 @@ class ArtifactServiceTest {
         //assert
         assertThat(thrown).isInstanceOf(OpjectNotFoundException.class).hasMessage("Could not find artifact with ID 16135131 :(");
     }
+
+    /**
+     * Test find all success.
+     */
     @Test
     void testFindAllSuccess()
     {
@@ -113,6 +136,9 @@ class ArtifactServiceTest {
         verify(artifactRepository,times(1)).findAll();
     }
 
+    /**
+     * Test find all failed.
+     */
     @Test
     void testFindAllFailed()
     {
@@ -124,6 +150,9 @@ class ArtifactServiceTest {
         assertThat(thrown).isInstanceOf(OpjectNotFoundException.class).hasMessage("Could not find any artifact :(");
     }
 
+    /**
+     * Test save artifact success.
+     */
     @Test
     void testSaveArtifactSuccess()
     {
@@ -143,6 +172,10 @@ class ArtifactServiceTest {
         assertThat(savedArtifact.getImageUrl()).isEqualTo(newArtifact.getImageUrl());
         verify(artifactRepository,times(1)).save(newArtifact);
     }
+
+    /**
+     * Test update artifact success.
+     */
     @Test
     void testUpdateArtifactSuccess()
     {
@@ -170,6 +203,10 @@ class ArtifactServiceTest {
         verify(artifactRepository,times(1)).findById("16135131");
         verify(artifactRepository,times(1)).save(oldArtifact);
     }
+
+    /**
+     * Test update artifact not found.
+     */
     @Test
     void testUpdateArtifactNotFound()
     {
@@ -184,6 +221,10 @@ class ArtifactServiceTest {
         assertThrows(OpjectNotFoundException.class,()-> artifactService.updateArtifact("16135131",updated));
         verify(artifactRepository,times(1)).findById("16135131");
     }
+
+    /**
+     * Delete artifact success.
+     */
     @Test
     void deleteArtifactSuccess()
     {
@@ -201,6 +242,10 @@ class ArtifactServiceTest {
         artifactService.deleteArtifact("16135131");
         verify(artifactRepository,times(1)).deleteById("16135131");
     }
+
+    /**
+     * Delete artifact error not found.
+     */
     @Test
     void deleteArtifactErrorNotFound()
     {

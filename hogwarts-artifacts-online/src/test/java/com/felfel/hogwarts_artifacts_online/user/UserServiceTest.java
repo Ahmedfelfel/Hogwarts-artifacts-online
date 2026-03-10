@@ -21,11 +21,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
+/**
+ * The type User service test.
+ */
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    /**
+     * The Password encoder.
+     */
     @Mock
     PasswordEncoder passwordEncoder;
 
@@ -34,6 +40,9 @@ class UserServiceTest {
 
     private final List<User> userList = new ArrayList<>();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
 
@@ -43,10 +52,16 @@ class UserServiceTest {
                new User(  3, "tom",  false, "user" ,"123")));
     }
 
+    /**
+     * Tear down.
+     */
     @AfterEach
     void tearDown() {
     }
 
+    /**
+     * Find all success.
+     */
     @Test
     void findAllSuccess() {
         //given
@@ -61,6 +76,10 @@ class UserServiceTest {
         assertThat(returnedUsers.getLast().getUsername()).isEqualTo(userList.getLast().getUsername());
 
     }
+
+    /**
+     * Find all failed.
+     */
     @Test
     void findAllFailed() {
         //given
@@ -72,6 +91,9 @@ class UserServiceTest {
                 .hasMessage("Could not find any user :(");
     }
 
+    /**
+     * Find user by id success.
+     */
     @Test
     void findUserByIdSuccess() {
         //given
@@ -86,6 +108,10 @@ class UserServiceTest {
         assertThat(returenedUser.getRoles()).isEqualTo(userList.getFirst().getRoles());
         verify(userRepository,times(1)).findById(userList.getFirst().getId());
     }
+
+    /**
+     * Find user by id error user not found.
+     */
     @Test
     void findUserByIdErrorUserNotFound() {
         //given
@@ -95,6 +121,9 @@ class UserServiceTest {
         verify(userRepository,times(1)).findById(5);
     }
 
+    /**
+     * Save user success.
+     */
     @Test
     void saveUserSuccess() {
         //given
@@ -121,6 +150,9 @@ class UserServiceTest {
         verify(this.userRepository,times(1)).save(addedUser);
     }
 
+    /**
+     * Update user success.
+     */
     @Test
     void updateUserSuccess() {
         //given
@@ -146,6 +178,10 @@ class UserServiceTest {
         verify(this.userRepository,times(1)).findById(4);
         verify(this.userRepository,times(1)).save(oldUser);
     }
+
+    /**
+     * Update user error id not found.
+     */
     @Test
     void updateUserErrorIdNotFound() {
         User oldUser =  new User( 4,
@@ -161,6 +197,9 @@ class UserServiceTest {
         verify(this.userRepository,times(1)).findById(4);
     }
 
+    /**
+     * Delete user by id success.
+     */
     @Test
     void deleteUserByIdSuccess() {
         //given
@@ -176,6 +215,10 @@ class UserServiceTest {
         userService.deleteUserById(4);
         verify(this.userRepository,times(1)).deleteById(4);
     }
+
+    /**
+     * Delete user error id not found.
+     */
     @Test
     void deleteUserErrorIdNotFound() {
         //given

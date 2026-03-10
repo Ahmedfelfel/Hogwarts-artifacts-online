@@ -5,6 +5,9 @@ import com.felfel.hogwarts_artifacts_online.user.dto.UpdateUserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Update user dto to user converter.
+ */
 @Component
 public class UpdateUserDtoToUserConverter implements Converter<UpdateUserDto, User> {
     @Override

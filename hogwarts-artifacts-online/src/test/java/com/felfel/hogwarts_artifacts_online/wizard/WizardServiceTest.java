@@ -20,20 +20,38 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
+/**
+ * The type Wizard service test.
+ */
 @ExtendWith(MockitoExtension.class)
 class WizardServiceTest {
+    /**
+     * The Wizard repository.
+     */
     @Mock
     WizardRepository wizardRepository;
 
+    /**
+     * The Artifact repository.
+     */
     @Mock
     ArtifactRepository artifactRepository;
 
+    /**
+     * The Wizard service.
+     */
     @InjectMocks
     WizardService wizardService;
 
 
+    /**
+     * The Wizard list.
+     */
     List<Wizard> wizardList = new ArrayList<>();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Wizard w1 =new Wizard();
@@ -47,10 +65,16 @@ class WizardServiceTest {
         wizardList.addAll(List.of(w1,w2));
     }
 
+    /**
+     * Tear down.
+     */
     @AfterEach
     void tearDown() {
     }
 
+    /**
+     * Find all success.
+     */
     @Test
     void findAllSuccess() {
         //given
@@ -61,6 +85,10 @@ class WizardServiceTest {
         assertThat(returnedWizards).isEqualTo(this.wizardList);
         verify(wizardRepository,times(1)).findAll();
     }
+
+    /**
+     * Find all failed.
+     */
     @Test
     void findAllFailed() {
         //given
@@ -73,6 +101,9 @@ class WizardServiceTest {
 
     }
 
+    /**
+     * Save wizard.
+     */
     @Test
     void saveWizard() {
         Wizard newWizard = new Wizard();
@@ -91,6 +122,9 @@ class WizardServiceTest {
             verify(wizardRepository,times(1)).save(any(Wizard.class));
     }
 
+    /**
+     * Find by id success.
+     */
     @Test
     void findByIdSuccess() {
         Wizard w1 =new Wizard();
@@ -105,6 +139,10 @@ class WizardServiceTest {
         assertThat(foundWizard.getName()).isEqualTo(w1.getName());
         verify(wizardRepository,times(1)).findById(1);
     }
+
+    /**
+     * Find by id failed.
+     */
     @Test
     void findByIdFailed() {
         //given
@@ -116,6 +154,9 @@ class WizardServiceTest {
                 .hasMessage("Could not find wizard with ID 1 :(");
     }
 
+    /**
+     * Update wizard success.
+     */
     @Test
     void updateWizardSuccess() {
         Wizard oldWizard= new Wizard();
@@ -138,6 +179,10 @@ class WizardServiceTest {
         verify(wizardRepository,times(1)).save(any(Wizard.class));
 
     }
+
+    /**
+     * Update wizard failed.
+     */
     @Test
     void updateWizardFailed() {
         Wizard updatedWizard= new Wizard();
@@ -150,6 +195,9 @@ class WizardServiceTest {
         verify(wizardRepository,times(1)).findById(1);
     }
 
+    /**
+     * Delete wizard success.
+     */
     @Test
     void deleteWizardSuccess() {
         Wizard w = new Wizard();
@@ -163,6 +211,10 @@ class WizardServiceTest {
         wizardService.deleteWizard(1);
         verify(wizardRepository,times(1)).deleteById(1);
     }
+
+    /**
+     * Delete wizard failed.
+     */
     @Test
     void deleteWizardFailed() {
         //given
@@ -171,6 +223,10 @@ class WizardServiceTest {
         assertThrows(OpjectNotFoundException.class,()-> wizardService.deleteWizard(1));
         verify(wizardRepository,times(1)).findById(1);
     }
+
+    /**
+     * Assign artifact success.
+     */
     @Test
     void assignArtifactSuccess()
     {
@@ -200,6 +256,10 @@ class WizardServiceTest {
         verify(artifactRepository,times(1)).findById("1234567890ABCDEF");
         verify(wizardRepository,times(1)).findById(2);
     }
+
+    /**
+     * Assign artifact error artifact not found.
+     */
     @Test
     void assignArtifactErrorArtifactNotFound()
     {
@@ -213,6 +273,10 @@ class WizardServiceTest {
                 .hasMessage("Could not find artifact with ID 1234567890ABCDEF :(");
         verify(artifactRepository,times(1)).findById("1234567890ABCDEF");
     }
+
+    /**
+     * Assign artifact error wizard not found.
+     */
     @Test
     void assignArtifactErrorWizardNotFound()
     {

@@ -11,10 +11,18 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type User principals.
+ */
 @Getter
 public class UserPrincipals implements UserDetails {
     private User user;
 
+    /**
+     * Instantiates a new User principals.
+     *
+     * @param user the user
+     */
     public UserPrincipals(User user) {
         this.user=user;
     }

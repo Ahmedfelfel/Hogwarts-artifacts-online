@@ -11,15 +11,29 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
 
+/**
+ * The type Jwt provider.
+ */
 @Component
 public class JwtProvider {
 
     private final JwtEncoder jwtEncoder;
 
+    /**
+     * Instantiates a new Jwt provider.
+     *
+     * @param jwtEncoder the jwt encoder
+     */
     public JwtProvider(JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
     }
 
+    /**
+     * Create token string.
+     *
+     * @param authentication the authentication
+     * @return the string
+     */
     public String createToken(Authentication authentication) {
         Instant now = Instant.now();
         long expire = 2; // 2 hour

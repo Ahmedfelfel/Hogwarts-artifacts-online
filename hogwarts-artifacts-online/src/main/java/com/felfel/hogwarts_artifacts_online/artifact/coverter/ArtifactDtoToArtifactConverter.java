@@ -5,6 +5,9 @@ import com.felfel.hogwarts_artifacts_online.artifact.dto.ArtifactDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Artifact dto to artifact converter.
+ */
 @Component
 public class ArtifactDtoToArtifactConverter implements Converter<ArtifactDto, Artifact> {
 

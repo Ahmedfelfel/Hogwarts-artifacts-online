@@ -23,14 +23,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * The type Wizard controller integration test.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Integration test Wizard endpoint api")
 @Tag("Integration")
 public class WizardControllerIntegrationTest {
+    /**
+     * The Object mapper.
+     */
     @Autowired
     ObjectMapper objectMapper;
 
+    /**
+     * The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
 
@@ -39,6 +48,11 @@ public class WizardControllerIntegrationTest {
 
     private String authHeader;
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @BeforeEach
     void setUp() throws Exception {
         ResultActions result = this.mockMvc
@@ -50,6 +64,12 @@ public class WizardControllerIntegrationTest {
 
         this.authHeader = "Bearer " + token;
     }
+
+    /**
+     * Find all wizards success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void findAllWizardsSuccess() throws Exception {
@@ -62,6 +82,11 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.data",hasSize(2)));
     }
 
+    /**
+     * Find wizard by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void findWizardByIdSuccess() throws Exception {
@@ -74,6 +99,12 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.name").value("felfel"));
 
     }
+
+    /**
+     * Find wizard by id failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findWizardByIdFailed() throws Exception {
 
@@ -86,6 +117,11 @@ public class WizardControllerIntegrationTest {
 
     }
 
+    /**
+     * Add wizard success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void addWizardSuccess() throws Exception {
         WizardDto wizardDto=new WizardDto(null,"name",null);
@@ -102,6 +138,11 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.name").value(wizardDto.name()));
     }
 
+    /**
+     * Update wizard success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateWizardSuccess() throws Exception {
         WizardDto wizardDto=new WizardDto(2,
@@ -120,6 +161,12 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.name").value(wizardDto.name()));
 
     }
+
+    /**
+     * Update wizard error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateWizardErrorIdNotFound() throws Exception {
         WizardDto wizardDto=new WizardDto(1,
@@ -137,6 +184,11 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Delete wizard success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void deleteWizardSuccess() throws Exception {
@@ -148,6 +200,12 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("delete success"))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Delete wizard error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteWizardErrorIdNotFound() throws Exception {
         this.mockMvc.perform(delete(this.baseUrl+"/wizards/5")
@@ -158,6 +216,12 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 5 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Assign artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void assignArtifactSuccess() throws Exception {
         this.mockMvc.perform(put(this.baseUrl+"/wizards/2/artifacts/1234567890ABCDEF")
@@ -168,6 +232,12 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("assign artifact success"))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Assign artifact error wizard id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void assignArtifactErrorWizardIdNotFound() throws Exception {
         this.mockMvc.perform(put(this.baseUrl+"/wizards/5/artifacts/1234567890ABCDEF")
@@ -178,6 +248,12 @@ public class WizardControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 5 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Assign artifact error artifact id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void assignArtifactErrorArtifactIdNotFound() throws Exception {
         this.mockMvc.perform(put(this.baseUrl+"/wizards/1/artifacts/1234567890ABCDE9")

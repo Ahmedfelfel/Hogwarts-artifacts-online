@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * The type Artifact.
+ */
 @Entity
 @Data
 @NoArgsConstructor

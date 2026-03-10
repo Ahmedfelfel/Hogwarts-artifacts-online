@@ -29,17 +29,29 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
+/**
+ * The type User controller test.
+ */
 @SuppressWarnings("FieldMayBeFinal")
 @WebMvcTest(UserController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class UserControllerTest {
 
+    /**
+     * The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
 
+    /**
+     * The Object mapper.
+     */
     @Autowired
     ObjectMapper objectMapper;
 
+    /**
+     * The User service.
+     */
     @MockitoBean
     UserService userService;
 
@@ -50,6 +62,9 @@ class UserControllerTest {
 
     private List<User> userList = new ArrayList<>();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         userList.addAll(List.of(
@@ -58,10 +73,18 @@ class UserControllerTest {
                 new User(  3, "tom",  false, "user" ,"123")));
     }
 
+    /**
+     * Tear down.
+     */
     @AfterEach
     void tearDown() {
     }
 
+    /**
+     * Find all users success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findAllUsersSuccess() throws Exception {
         //given
@@ -75,6 +98,12 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data[0].id").value(userList.getFirst().getId()))
                 .andExpect(jsonPath("$.data[-1].id").value(userList.getLast().getId()));
     }
+
+    /**
+     * Find all users failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findAllUsersFailed() throws Exception {
         //given
@@ -87,6 +116,11 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Find user by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findUserByIdSuccess() throws Exception {
         //given
@@ -101,6 +135,12 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data.enabled").value(userList.getFirst().getEnabled()))
                 .andExpect(jsonPath("$.data.roles").value(userList.getFirst().getRoles()));
     }
+
+    /**
+     * Find user by id failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findUserByIdFailed() throws Exception {
         //given
@@ -113,6 +153,11 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Add user.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void addUser() throws Exception {
         //given
@@ -141,6 +186,11 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data.roles").value(savedUser.getRoles()));
     }
 
+    /**
+     * Update user success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateUserSuccess() throws Exception {
         //given
@@ -167,6 +217,12 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data.enabled").value(updatedUser.getEnabled()))
                 .andExpect(jsonPath("$.data.roles").value(updatedUser.getRoles()));
     }
+
+    /**
+     * Update user error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateUserErrorIdNotFound() throws Exception {
         //given
@@ -187,6 +243,11 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Delete user by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteUserByIdSuccess() throws Exception {
     //given
@@ -200,6 +261,12 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
 
     }
+
+    /**
+     * Delete user by id error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteUserByIdErrorIdNotFound() throws Exception {
     //given

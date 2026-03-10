@@ -24,27 +24,45 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * The type Wizard controller test.
+ */
 @WebMvcTest(WizardController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class WizardControllerTest {
 
+    /**
+     * The Wizard service.
+     */
     @MockitoBean
     WizardService wizardService;
 
+    /**
+     * The Object mapper.
+     */
     @Autowired
     ObjectMapper objectMapper;
 
 
+    /**
+     * The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
-
+    // define object type for exception message
     private final String OBJECT_TYPE="wizard";
 
     @Value("${api.endpoint.base-url}")
     private String baseUrl;
 
+    /**
+     * The Wizard list.
+     */
     List<Wizard> wizardList = new ArrayList<>();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Wizard w1 =new Wizard();
@@ -58,10 +76,18 @@ class WizardControllerTest {
         wizardList.addAll(List.of(w1,w2));
     }
 
+    /**
+     * Tear down.
+     */
     @AfterEach
     void tearDown() {
     }
 
+    /**
+     * Find all wizards success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findAllWizardsSuccess() throws Exception {
         //given
@@ -77,6 +103,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.data[1].id").value(wizardList.get(1).getId()))
                 .andExpect(jsonPath("$.data[1].name").value(wizardList.get(1).getName()));
     }
+
+    /**
+     * Find all wizards failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findAllWizardsFailed() throws Exception {
         //given
@@ -89,6 +121,11 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Find wizard by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findWizardByIdSuccess() throws Exception {
         //given
@@ -102,6 +139,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.data.name").value(this.wizardList.getFirst().getName()));
 
     }
+
+    /**
+     * Find wizard by id failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findWizardByIdFailed() throws Exception {
         //given
@@ -115,6 +158,11 @@ class WizardControllerTest {
 
     }
 
+    /**
+     * Add wizard success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void addWizardSuccess() throws Exception {
         WizardDto wizardDto=new WizardDto(null,"name",null);
@@ -139,6 +187,11 @@ class WizardControllerTest {
 
     }
 
+    /**
+     * Update wizard success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateWizardSuccess() throws Exception {
         WizardDto wizardDto=new WizardDto(1,
@@ -163,6 +216,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.data.name").value(updated.getName()));
 
     }
+
+    /**
+     * Update wizard error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateWizardErrorIdNotFound() throws Exception {
         WizardDto wizardDto=new WizardDto(1,
@@ -183,6 +242,11 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Delete wizard success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteWizardSuccess() throws Exception {
         //given
@@ -195,6 +259,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.message").value("delete success"))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Delete wizard error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteWizardErrorIdNotFound() throws Exception {
         //given
@@ -208,6 +278,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Assign artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void assignArtifactSuccess() throws Exception {
         //given
@@ -220,6 +296,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.message").value("assign artifact success"))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Assign artifact error wizard id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void assignArtifactErrorWizardIdNotFound() throws Exception {
         //given
@@ -233,6 +315,12 @@ class WizardControllerTest {
                 .andExpect(jsonPath("$.message").value("Could not find wizard with ID 1 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Assign artifact error artifact id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void assignArtifactErrorArtifactIdNotFound() throws Exception {
         //given

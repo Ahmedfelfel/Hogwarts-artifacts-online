@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/**
+ * The type Artifact controller.
+ */
 @RestController
 @RequestMapping("${api.endpoint.base-url}")
 public class ArtifactController {
@@ -17,6 +20,13 @@ private final ArtifactService artifactService;
 private final ArtifactToArtifactDtoConverter artifactToArtifactDtoConverter;
 private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
 
+    /**
+     * Instantiates a new Artifact controller.
+     *
+     * @param artifactService                the artifact service
+     * @param artifactToArtifactDtoConverter the artifact to artifact dto converter
+     * @param artifactDtoToArtifactConverter the artifact dto to artifact converter
+     */
     public ArtifactController(ArtifactService artifactService,
                               ArtifactToArtifactDtoConverter artifactToArtifactDtoConverter,
                               ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter)
@@ -26,6 +36,11 @@ private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
         this.artifactDtoToArtifactConverter = artifactDtoToArtifactConverter;
     }
 
+    /**
+     * Find all artifacts result.
+     *
+     * @return the result
+     */
     @GetMapping("/artifacts")
     @ResponseStatus(HttpStatus.OK)
     public Result findAllArtifacts() {
@@ -37,6 +52,12 @@ private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
         return new Result(true, HttpStatus.OK.value(), "find all success", foundArtifactDtos);
     }
 
+    /**
+     * Find artifact by id result.
+     *
+     * @param artifactId the artifact id
+     * @return the result
+     */
     @GetMapping("/artifacts/{artifactId}")
     @ResponseStatus(HttpStatus.OK)
     public Result findArtifactById(@PathVariable String artifactId) {
@@ -45,6 +66,12 @@ private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
         return new Result(true, HttpStatus.OK.value(), "find one success",artifactDto );
     }
 
+    /**
+     * Add artifact result.
+     *
+     * @param artifactDto the artifact dto
+     * @return the result
+     */
     @SuppressWarnings("DataFlowIssue")
     @PostMapping("/artifacts")
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,6 +85,14 @@ private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
                         "add success",
                         savedArtifactDto);
     }
+
+    /**
+     * Update artifact result.
+     *
+     * @param artifactId  the artifact id
+     * @param artifactDto the artifact dto
+     * @return the result
+     */
     @PutMapping("/artifacts/{artifactId}")
     @ResponseStatus(HttpStatus.OK)
     public Result updateArtifact(@PathVariable String artifactId,@Valid @RequestBody ArtifactDto artifactDto)
@@ -70,6 +105,13 @@ private final ArtifactDtoToArtifactConverter artifactDtoToArtifactConverter;
                 "update success",
                 updatedArtifactDto);
     }
+
+    /**
+     * Delete artifact result.
+     *
+     * @param artifactId the artifact id
+     * @return the result
+     */
     @DeleteMapping("/artifacts/{artifactId}")
     public Result deleteArtifact(@PathVariable String artifactId)
     {

@@ -3,6 +3,9 @@ package com.felfel.hogwarts_artifacts_online.artifact.dto;
 import com.felfel.hogwarts_artifacts_online.wizard.dto.WizardDto;
 import jakarta.validation.constraints.NotEmpty;
 
+/**
+ * The type Artifact dto.
+ */
 public record ArtifactDto(String id,
                           @NotEmpty(message = "name is required")
                           String name ,

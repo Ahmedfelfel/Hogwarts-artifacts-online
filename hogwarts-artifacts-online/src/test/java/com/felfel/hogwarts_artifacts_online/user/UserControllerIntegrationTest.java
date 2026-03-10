@@ -24,14 +24,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * The type User controller integration test.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Integration test User endpoint api")
 @Tag("Integration")
 public class UserControllerIntegrationTest {
+    /**
+     * The Object mapper.
+     */
     @Autowired
     ObjectMapper objectMapper;
 
+    /**
+     * The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
 
@@ -40,6 +49,11 @@ public class UserControllerIntegrationTest {
 
     private String authHeader;
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @BeforeEach
     void setUp() throws Exception {
         ResultActions result = this.mockMvc
@@ -51,6 +65,12 @@ public class UserControllerIntegrationTest {
 
         this.authHeader = "Bearer " + token;
     }
+
+    /**
+     * Find all users success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void findAllUsersSuccess() throws Exception {
@@ -63,6 +83,12 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isArray())
                 .andExpect(jsonPath("$.data",hasSize(3)));
     }
+
+    /**
+     * Find user by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findUserByIdSuccess() throws Exception {
 
@@ -76,6 +102,12 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.enabled").value(true))
                 .andExpect(jsonPath("$.data.roles").value("admin user"));
     }
+
+    /**
+     * Find user by id failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findUserByIdFailed() throws Exception {
         mockMvc.perform(get(this.baseUrl+"/users/5").accept(MediaType.APPLICATION_JSON)
@@ -86,6 +118,11 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Add user.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void addUser() throws Exception {
         //given
@@ -109,6 +146,11 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.roles").value(addUserDto.roles()));
     }
 
+    /**
+     * Update user success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateUserSuccess() throws Exception {
         //given
@@ -130,6 +172,12 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.enabled").value(updateUserDto.enabled()))
                 .andExpect(jsonPath("$.data.roles").value(updateUserDto.roles()));
     }
+
+    /**
+     * Update user error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateUserErrorIdNotFound() throws Exception {
         //given
@@ -149,6 +197,11 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Delete user by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteUserByIdSuccess() throws Exception {
         mockMvc.perform(delete(this.baseUrl+"/users/3")
@@ -160,6 +213,12 @@ public class UserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isEmpty());
 
     }
+
+    /**
+     * Delete user by id error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteUserByIdErrorIdNotFound() throws Exception {
         //when-then

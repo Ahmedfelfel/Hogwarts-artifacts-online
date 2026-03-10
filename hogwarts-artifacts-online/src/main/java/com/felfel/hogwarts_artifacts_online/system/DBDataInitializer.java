@@ -9,6 +9,9 @@ import com.felfel.hogwarts_artifacts_online.wizard.WizardRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Db data initializer.
+ */
 @SuppressWarnings("RedundantThrows")
 @Component
 public class DBDataInitializer implements CommandLineRunner {
@@ -19,6 +22,13 @@ public class DBDataInitializer implements CommandLineRunner {
 
     private final UserService userService;
 
+    /**
+     * Instantiates a new Db data initializer.
+     *
+     * @param artifactRepository the artifact repository
+     * @param wizardRepository   the wizard repository
+     * @param userService        the user service
+     */
     public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserService userService) {
         this.artifactRepository = artifactRepository;
         this.wizardRepository = wizardRepository;

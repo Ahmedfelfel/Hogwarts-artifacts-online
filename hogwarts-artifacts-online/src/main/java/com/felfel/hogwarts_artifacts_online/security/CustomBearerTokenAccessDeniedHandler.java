@@ -11,11 +11,20 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
+
+/**
+ * The type Custom bearer token access denied handler.
+ */
 @Configuration
 public class CustomBearerTokenAccessDeniedHandler implements AccessDeniedHandler {
 
     private final HandlerExceptionResolver resolver;
 
+    /**
+     * Instantiates a new Custom bearer token access denied handler.
+     *
+     * @param resolver the resolver
+     */
     public CustomBearerTokenAccessDeniedHandler(@Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
         this.resolver = resolver;
     }

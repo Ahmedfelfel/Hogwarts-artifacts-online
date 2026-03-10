@@ -6,10 +6,21 @@ import com.felfel.hogwarts_artifacts_online.wizard.coverter.WizardToWizardDtoCon
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Artifact to artifact dto converter.
+ */
 @Component
 public class ArtifactToArtifactDtoConverter implements Converter<Artifact, ArtifactDto> {
+    /**
+     * The Wizard to wizard dto converter.
+     */
     WizardToWizardDtoConverter wizardToWizardDtoConverter;
 
+    /**
+     * Instantiates a new Artifact to artifact dto converter.
+     *
+     * @param wizardToWizardDtoConverter the wizard to wizard dto converter
+     */
     public ArtifactToArtifactDtoConverter(WizardToWizardDtoConverter wizardToWizardDtoConverter) {
         this.wizardToWizardDtoConverter = wizardToWizardDtoConverter;
     }

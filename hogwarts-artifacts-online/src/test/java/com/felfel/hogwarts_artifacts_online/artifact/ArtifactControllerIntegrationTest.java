@@ -22,15 +22,24 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * The type Artifact controller integration test.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Integration test Artifact endpoint api")
 @Tag("Integration")
 public class ArtifactControllerIntegrationTest {
 
+    /**
+     * The Object mapper.
+     */
     @Autowired
     ObjectMapper objectMapper;
 
+    /**
+     * The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
 
@@ -39,6 +48,11 @@ public class ArtifactControllerIntegrationTest {
 
     private String authHeader;
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @BeforeEach
     void setUp() throws Exception {
         ResultActions result = this.mockMvc
@@ -51,6 +65,11 @@ public class ArtifactControllerIntegrationTest {
         this.authHeader = "Bearer " + token;
     }
 
+    /**
+     * Find all success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void findAllSuccess() throws Exception {
@@ -63,6 +82,11 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.data", hasSize(4)));
     }
 
+    /**
+     * Add artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void addArtifactSuccess() throws Exception {
         //given
@@ -95,6 +119,12 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isArray())
                 .andExpect(jsonPath("$.data", hasSize(5)));
     }
+
+    /**
+     * Update artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateArtifactSuccess() throws Exception {
         //given
@@ -118,6 +148,12 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.description").value(artifactDto.description()))
                 .andExpect(jsonPath("$.data.imageUrl").value(artifactDto.imageUrl()));
     }
+
+    /**
+     * Delete artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteArtifactSuccess() throws Exception {
 
@@ -129,6 +165,12 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("delete success"))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Find artifact by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findArtifactByIdSuccess() throws Exception {
         //when
@@ -140,6 +182,12 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.data.name").value("Deluminator"));
 
     }
+
+    /**
+     * Find artifact by id failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findArtifactByIdFailed() throws Exception {
        //when-
@@ -150,6 +198,12 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.data").isEmpty());
 
     }
+
+    /**
+     * Update artifact error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateArtifactErrorIdNotFound() throws Exception {
         //given
@@ -170,6 +224,12 @@ public class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Could not find artifact with ID 1234567890ABCDE5 :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Delete artifact error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteArtifactErrorIdNotFound() throws Exception {
         //when-then

@@ -25,16 +25,28 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * The type Artifact controller test.
+ */
 @WebMvcTest(ArtifactController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class ArtifactControllerTest {
 
+    /**
+     * The Artifact service.
+     */
     @MockitoBean
     ArtifactService artifactService;
 
+    /**
+     * The Object mapper.
+     */
     @Autowired
     ObjectMapper objectMapper;
 
+    /**
+     * The Mock mvc.
+     */
     @Autowired
     MockMvc mockMvc;
 
@@ -43,8 +55,14 @@ class ArtifactControllerTest {
     @Value("${api.endpoint.base-url}")
     private String baseUrl;
 
+    /**
+     * The Artifact list.
+     */
     List<Artifact> artifactList = new ArrayList<>();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
 
@@ -75,10 +93,18 @@ class ArtifactControllerTest {
 
     }
 
+    /**
+     * Tear down.
+     */
     @AfterEach
     void tearDown() {
     }
 
+    /**
+     * Find artifact by id success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findArtifactByIdSuccess() throws Exception {
         //given
@@ -92,6 +118,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.data.name").value("Deluminator"));
 
     }
+
+    /**
+     * Find artifact by id failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findArtifactByIdFailed() throws Exception {
         //given
@@ -104,6 +136,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
 
     }
+
+    /**
+     * Find all success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findAllSuccess() throws Exception {
         //given
@@ -118,6 +156,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.data[0].id").value("1234567890ABCDEF"))
                 .andExpect(jsonPath("$.data[-1].id").value("1234567890ABCDE3"));
     }
+
+    /**
+     * Find all failed.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void findAllFailed() throws Exception {
         //given
@@ -130,6 +174,11 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    /**
+     * Add artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void addArtifactSuccess() throws Exception {
         //given
@@ -158,6 +207,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.data.description").value("desc"))
                 .andExpect(jsonPath("$.data.imageUrl").value("url"));
     }
+
+    /**
+     * Update artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateArtifactSuccess() throws Exception {
         //given
@@ -186,6 +241,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.data.description").value(updated.getDescription()))
                 .andExpect(jsonPath("$.data.imageUrl").value(updated.getImageUrl()));
     }
+
+    /**
+     * Update artifact error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void updateArtifactErrorIdNotFound() throws Exception {
         //given
@@ -208,6 +269,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.message").value("Could not find artifact with ID 1234567890ABCDEF :("))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Delete artifact success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteArtifactSuccess() throws Exception {
         //given
@@ -220,6 +287,12 @@ class ArtifactControllerTest {
                 .andExpect(jsonPath("$.message").value("delete success"))
                 .andExpect(jsonPath("$.data").isEmpty());
     }
+
+    /**
+     * Delete artifact error id not found.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void deleteArtifactErrorIdNotFound() throws Exception {
         //given

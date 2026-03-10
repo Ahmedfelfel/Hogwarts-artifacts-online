@@ -7,6 +7,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * The type Artifact service.
+ */
 @Service
 @Transactional
 public class ArtifactService {
@@ -15,17 +18,34 @@ public class ArtifactService {
     private final ArtifactRepository artifactRepository;
     private final IdWorker idWorker;
 
+    /**
+     * Instantiates a new Artifact service.
+     *
+     * @param artifactRepository the artifact repository
+     * @param idWorker           the id worker
+     */
     public ArtifactService(ArtifactRepository artifactRepository,IdWorker idWorker) {
         this.artifactRepository = artifactRepository;
         this.idWorker=idWorker;
     }
 
+    /**
+     * Find by id artifact.
+     *
+     * @param artifactId the artifact id
+     * @return the artifact
+     */
     public Artifact findById(String artifactId)
     {
         return this.artifactRepository.findById(artifactId)
                 .orElseThrow(() -> new OpjectNotFoundException(OBJECT_TYPE,artifactId));
     }
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<Artifact> findAll()
     {
         List<Artifact> artifacts = this.artifactRepository.findAll();
@@ -36,11 +56,25 @@ public class ArtifactService {
          return artifacts;
     }
 
+    /**
+     * Save artifact artifact.
+     *
+     * @param newArtifact the new artifact
+     * @return the artifact
+     */
     public Artifact saveArtifact(Artifact newArtifact)
     {
         newArtifact.setId((idWorker.nextId())+"");
         return this.artifactRepository.save(newArtifact);
     }
+
+    /**
+     * Update artifact artifact.
+     *
+     * @param ArtifactId      the artifact id
+     * @param updatedArtifact the updated artifact
+     * @return the artifact
+     */
     public Artifact updateArtifact(String ArtifactId,Artifact updatedArtifact)
     {
         return this.artifactRepository.findById(ArtifactId)
@@ -52,6 +86,11 @@ public class ArtifactService {
         }).orElseThrow(() -> new OpjectNotFoundException(OBJECT_TYPE,ArtifactId));
     }
 
+    /**
+     * Delete artifact.
+     *
+     * @param artifactId the artifact id
+     */
     public void deleteArtifact(String artifactId) {
         Artifact artifact = this.artifactRepository.findById(artifactId)
                 .orElseThrow(()->new OpjectNotFoundException(OBJECT_TYPE,artifactId));

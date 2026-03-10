@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
+/**
+ * The type Auth controller.
+ */
 @RestController
 @RequestMapping("${api.endpoint.base-url}/users")
 public class AuthController {
@@ -19,10 +21,21 @@ public class AuthController {
 
     private final Logger LOGGER= LoggerFactory.getLogger(AuthController.class);
 
+    /**
+     * Instantiates a new Auth controller.
+     *
+     * @param authService the auth service
+     */
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
+    /**
+     * Login result.
+     *
+     * @param authentication the authentication
+     * @return the result
+     */
     @PostMapping("/login")
     public Result login(Authentication authentication)
     {

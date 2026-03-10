@@ -31,6 +31,9 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 
+/**
+ * The type Security configuration.
+ */
 @Configuration
 public class SecurityConfiguration {
 
@@ -44,6 +47,14 @@ public class SecurityConfiguration {
     private final CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler;
     private final CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint;
 
+    /**
+     * Instantiates a new Security configuration.
+     *
+     * @param customBasicAuthenticationEntryPoint       the custom basic authentication entry point
+     * @param customBearerTokenAccessDeniedHandler      the custom bearer token access denied handler
+     * @param customBearerTokenAuthenticationEntryPoint the custom bearer token authentication entry point
+     * @throws NoSuchAlgorithmException the no such algorithm exception
+     */
     public SecurityConfiguration(CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint, CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler, CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint) throws NoSuchAlgorithmException {
         this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
         this.customBearerTokenAccessDeniedHandler = customBearerTokenAccessDeniedHandler;
@@ -54,6 +65,13 @@ public class SecurityConfiguration {
         this.publicKey= (RSAPublicKey) keyPair.getPublic();
     }
 
+    /**
+     * Security filter chain security filter chain.
+     *
+     * @param httpSecurity the http security
+     * @return the security filter chain
+     * @throws Exception the exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -83,12 +101,22 @@ public class SecurityConfiguration {
 
     }
 
+    /**
+     * Password encoder password encoder.
+     *
+     * @return the password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder(10);
     }
 
+    /**
+     * Jwt encoder jwt encoder.
+     *
+     * @return the jwt encoder
+     */
     @Bean
     public JwtEncoder jwtEncoder ()
     {
@@ -97,12 +125,22 @@ public class SecurityConfiguration {
         return new NimbusJwtEncoder(jwkSet);
     }
 
+    /**
+     * Jwt decoder jwt decoder.
+     *
+     * @return the jwt decoder
+     */
     @Bean
     public JwtDecoder jwtDecoder()
     {
         return NimbusJwtDecoder.withPublicKey(this.publicKey).build();
     }
 
+    /**
+     * Jwt authentication converter jwt authentication converter.
+     *
+     * @return the jwt authentication converter
+     */
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter()
     {

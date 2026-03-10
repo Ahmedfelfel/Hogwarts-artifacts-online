@@ -10,11 +10,20 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
+
+/**
+ * The type Custom basic authentication entry point.
+ */
 @Configuration
 public class CustomBasicAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     private final HandlerExceptionResolver resolver;
 
+    /**
+     * Instantiates a new Custom basic authentication entry point.
+     *
+     * @param resolver the resolver
+     */
     public CustomBasicAuthenticationEntryPoint(@Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
         this.resolver = resolver;
     }

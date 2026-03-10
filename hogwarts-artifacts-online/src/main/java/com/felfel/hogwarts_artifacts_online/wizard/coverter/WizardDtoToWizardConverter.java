@@ -5,6 +5,9 @@ import com.felfel.hogwarts_artifacts_online.wizard.dto.WizardDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Wizard dto to wizard converter.
+ */
 @Component
 public class WizardDtoToWizardConverter implements Converter<WizardDto, Wizard> {
     @Override
