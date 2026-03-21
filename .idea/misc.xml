@@ -8,7 +8,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/hogwarts-artifacts-online/pom.xml" />
+        <option value="$PROJECT_DIR$/hogwarts-artifacts-online/github/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/hogwarts-artifacts-online/github/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="25" project-jdk-type="JavaSDK">
